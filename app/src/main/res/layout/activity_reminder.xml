@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.view.reminder.ReminderActivity"
+    android:background="@color/colorSecondary">
+
+    <ImageView
+        tools:src="@tools:sample/avatars"
+        android:id="@+id/CreatePagePet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/planTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/CreatePagePet"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/title"
+        style="@style/TextViewTitleStyle"
+        android:textColor="@color/white"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/planTitleTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/planTitle"
+        android:layout_marginHorizontal="20dp"
+        style="@style/CreatePageTextInputLayout">
+        
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/planTitleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title_hint"
+            style="@style/TextViewTitleStyle"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/planDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/planTitleTextLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/description"
+        style="@style/TextViewTitleStyle"
+        android:textColor="@color/white"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/planDescTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/planDescription"
+        android:layout_marginHorizontal="20dp"
+        style="@style/CreatePageTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/planDescEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/description_hint"
+            style="@style/TextViewTitleStyle"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/planDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/planDescTextLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/date"
+        style="@style/TextViewTitleStyle"
+        android:textColor="@color/white"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/planDateInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/planDate"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="150dp"
+        style="@style/CreatePageTextInputLayout"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_calendar"
+        app:endIconTint="@color/colorGray">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/planDateEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/date_hint"
+            style="@style/TextViewTitleStyle"
+            android:clickable="false"
+            android:focusable="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/planTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/planDateInputLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/at_what_time"
+        style="@style/TextViewTitleStyle"
+        android:textColor="@color/white"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/planTimeHourLayout"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/planTime"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        style="@style/CreatePageTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/planTimeHourEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hh"
+            style="@style/TextViewTitleStyle"
+            android:clickable="false"
+            android:focusable="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/planTimeDivider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/planTimeHourLayout"
+        app:layout_constraintTop_toTopOf="@id/planTimeHourLayout"
+        app:layout_constraintBottom_toBottomOf="@id/planTimeHourLayout"
+        android:layout_marginStart="10dp"
+        android:text=":"
+        android:textSize="24sp"
+        android:textColor="@color/white"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/planTimeMinuteLayout"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/planTime"
+        app:layout_constraintStart_toEndOf="@id/planTimeDivider"
+        android:layout_marginStart="10dp"
+        style="@style/CreatePageTextInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/planTimeMinuteEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mm"
+            style="@style/TextViewTitleStyle"
+            android:clickable="false"
+            android:focusable="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSavePlan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:paddingVertical="15dp"
+        android:text="@string/title_save"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
