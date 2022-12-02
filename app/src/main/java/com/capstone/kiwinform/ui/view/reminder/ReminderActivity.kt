@@ -1,19 +1,33 @@
 package com.capstone.kiwinform.ui.view.reminder
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.capstone.kiwinform.databinding.ActivityReminderBinding
+import com.capstone.kiwinform.ui.view.Plan
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ReminderActivity : AppCompatActivity() {
+    companion object{
+        const val REQUEST_CODE_ADD = 1000
+        const val INTENT_PLAN = "intent_plan"
+
+        fun launchAddPlanPage(activity: Activity){
+            val intent = Intent(activity, ReminderActivity::class.java)
+            activity.startActivityForResult(intent, REQUEST_CODE_ADD)
+        }
+    }
+
     private lateinit var binding: ActivityReminderBinding
+
+    private lateinit var selectedTime: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +82,7 @@ class ReminderActivity : AppCompatActivity() {
         val currentMinute = currentTime.get(Calendar.MINUTE)
 
         TimePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT, { timePicker, selectedHour, selectedMinute ->
+            selectedTime = "${checkDigit(selectedHour)} : ${checkDigit(selectedMinute)}"
             binding.planTimeHourEdit.setText(checkDigit(selectedHour))
             binding.planTimeMinuteEdit.setText(checkDigit(selectedMinute))
         }, currentHour, currentMinute, true).show()
@@ -79,6 +94,16 @@ class ReminderActivity : AppCompatActivity() {
     }
 
     private fun savePlan() {
-        Toast.makeText(this, "TODO: Write code to save plan", Toast.LENGTH_SHORT).show()
+        val data = Intent()
+        val titlePlan = binding.planTitleEditText.text.toString()
+        val descPlan = binding.planDescEditText.text.toString()
+        val date = binding.planDateEdit.text.toString()
+        val time = selectedTime
+
+        val plan = Plan(title = titlePlan, description = descPlan, date = date, time = time)
+        data.putExtra(INTENT_PLAN, plan)
+        setResult(Activity.RESULT_OK, data)
+
+        finish()
     }
 }

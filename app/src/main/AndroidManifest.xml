@@ -37,11 +37,6 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.view.dashboard.MainActivity"
-            android:exported="false"
-            android:screenOrientation="sensorPortrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".ui.view.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity">
@@ -50,6 +45,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.view.splash.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="sensorPortrait"
+            tools:ignore="LockedOrientationActivity">
+
         </activity>
     </application>
 
