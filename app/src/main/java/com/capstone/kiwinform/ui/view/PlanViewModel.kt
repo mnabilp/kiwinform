@@ -10,22 +10,26 @@ import kotlinx.coroutines.launch
 class PlanViewModel(application: Application): AndroidViewModel(application) {
     private val repository: PlanRepository
     val listAllPlan: LiveData<List<Plan>>
+    val todaysPlan: LiveData<List<Plan>>
 
     init {
-        val notesDao = PlanDatabase.getDatabase(application).planDao()
-        repository = PlanRepository(notesDao)
+        val planDao = PlanDatabase.getDatabase(application).planDao()
+        repository = PlanRepository(planDao)
+
         listAllPlan = repository.getListPlan
+
+        todaysPlan = repository.getTodaysPlan
     }
 
     fun insertNotes(plan: Plan) = viewModelScope.launch(Dispatchers.IO){
-        repository.insertNotes(plan)
+        repository.insertPlan(plan)
     }
 
     fun updateNotes(plan: Plan) = viewModelScope.launch(Dispatchers.IO){
-        repository.updateNotes(plan)
+        repository.updatePlan(plan)
     }
 
     fun delete(id: Int) = viewModelScope.launch(Dispatchers.IO) {
-        repository.deleteNotes(id)
+        repository.deletePlan(id)
     }
 }

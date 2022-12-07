@@ -1,19 +1,22 @@
 package com.capstone.kiwinform.ui.view
 
 import androidx.lifecycle.LiveData
+import java.time.LocalDate
 
-class PlanRepository(private val notesDao: PlanDao) {
-    val getListPlan: LiveData<List<Plan>> = notesDao.getListPlan()
+class PlanRepository(private val planDao: PlanDao) {
+    val getListPlan: LiveData<List<Plan>> = planDao.getListPlan()
 
-    suspend fun insertNotes(plan: Plan){
-        notesDao.insert(plan)
+    val getTodaysPlan: LiveData<List<Plan>> = planDao.getTodaysPlan(LocalDate.now())
+
+    suspend fun insertPlan(plan: Plan){
+        planDao.insert(plan)
     }
 
-    suspend fun updateNotes(plan: Plan){
-        notesDao.update(plan)
+    suspend fun updatePlan(plan: Plan){
+        planDao.update(plan)
     }
 
-    suspend fun deleteNotes(id: Int){
-        notesDao.deletePlan(id)
+    suspend fun deletePlan(id: Int){
+        planDao.deletePlan(id)
     }
 }

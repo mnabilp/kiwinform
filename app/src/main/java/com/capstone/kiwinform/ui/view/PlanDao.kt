@@ -2,11 +2,11 @@ package com.capstone.kiwinform.ui.view
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import java.time.LocalDate
 
 @Dao
 interface PlanDao {
@@ -21,4 +21,7 @@ interface PlanDao {
 
     @Query("SELECT * FROM plan_table ORDER BY id ASC")
     fun getListPlan(): LiveData<List<Plan>>
+
+    @Query("SELECT * FROM plan_table WHERE date =:dateToday ORDER BY time ASC")
+    fun getTodaysPlan(dateToday: LocalDate): LiveData<List<Plan>>
 }

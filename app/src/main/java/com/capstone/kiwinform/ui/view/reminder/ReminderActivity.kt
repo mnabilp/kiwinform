@@ -12,12 +12,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.capstone.kiwinform.databinding.ActivityReminderBinding
 import com.capstone.kiwinform.ui.view.Plan
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ReminderActivity : AppCompatActivity() {
     companion object{
         const val REQUEST_CODE_ADD = 1000
         const val INTENT_PLAN = "intent_plan"
+
+        const val EXTRA_PLAN = "extra_plan"
 
         fun launchAddPlanPage(activity: Activity){
             val intent = Intent(activity, ReminderActivity::class.java)
@@ -27,12 +32,22 @@ class ReminderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityReminderBinding
 
-    private lateinit var selectedTime: String
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityReminderBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (intent.hasExtra(EXTRA_PLAN)) {
+            val plan = intent.getParcelableExtra<Plan>(EXTRA_PLAN)
+
+            binding.apply {
+                planTitleEditText.setText(plan?.title)
+                planDescEditText.setText(plan?.description)
+                planDateEdit.setText(plan?.date?.format(DateTimeFormatter.ofPattern("EEEE, d MMM yyyy")))
+                planTimeHourEdit.setText(plan?.time.toString().take(2))
+                planTimeMinuteEdit.setText(plan?.time.toString().takeLast(2))
+            }
+        }
 
         binding.planDateEdit.setOnClickListener {
             updateDate()
@@ -41,7 +56,11 @@ class ReminderActivity : AppCompatActivity() {
         binding.planTimeHourEdit.setOnClickListener { updateTime() }
         binding.planTimeMinuteEdit.setOnClickListener { updateTime() }
 
-        binding.btnSavePlan.setOnClickListener { savePlan() }
+        binding.btnSavePlan.setOnClickListener {
+            if (intent.hasExtra(EXTRA_PLAN)) {
+                updatePlan()
+            } else { savePlan() }
+        }
     }
 
     private fun updateDate() {
@@ -56,10 +75,7 @@ class ReminderActivity : AppCompatActivity() {
             myCalendar.set(Calendar.MONTH, month)
             myCalendar.set(Calendar.DAY_OF_MONTH, day)
 
-            var sFormat = "yyyy-MM-dd"
-            val shortDateFormat = SimpleDateFormat(sFormat, Locale.US)
-
-            sFormat = "EEEE, d MMM yyyy"
+            val sFormat = "EEEE, d MMM yyyy"
             val dateFormat = SimpleDateFormat(sFormat, Locale.US)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 binding.planDateEdit.setText(dateFormat.format(myCalendar.time))
@@ -82,7 +98,6 @@ class ReminderActivity : AppCompatActivity() {
         val currentMinute = currentTime.get(Calendar.MINUTE)
 
         TimePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT, { timePicker, selectedHour, selectedMinute ->
-            selectedTime = "${checkDigit(selectedHour)} : ${checkDigit(selectedMinute)}"
             binding.planTimeHourEdit.setText(checkDigit(selectedHour))
             binding.planTimeMinuteEdit.setText(checkDigit(selectedMinute))
         }, currentHour, currentMinute, true).show()
@@ -97,10 +112,39 @@ class ReminderActivity : AppCompatActivity() {
         val data = Intent()
         val titlePlan = binding.planTitleEditText.text.toString()
         val descPlan = binding.planDescEditText.text.toString()
-        val date = binding.planDateEdit.text.toString()
-        val time = selectedTime
+
+        val toBeConverted = binding.planDateEdit.text.toString()
+        val format = DateTimeFormatter.ofPattern("EEEE, d MMM yyyy")
+        val date = LocalDate.parse(toBeConverted, format)
+
+        val hour = binding.planTimeHourEdit.text.toString()
+        val minute = binding.planTimeMinuteEdit.text.toString()
+        val time = LocalTime.parse("$hour:$minute")
 
         val plan = Plan(title = titlePlan, description = descPlan, date = date, time = time)
+        data.putExtra(INTENT_PLAN, plan)
+        setResult(Activity.RESULT_OK, data)
+
+        finish()
+    }
+
+    private fun updatePlan() {
+        val data = Intent()
+        val titlePlan = binding.planTitleEditText.text.toString()
+        val descPlan = binding.planDescEditText.text.toString()
+
+        val toBeConverted = binding.planDateEdit.text.toString()
+        val format = DateTimeFormatter.ofPattern("EEEE, d MMM yyyy")
+        val date = LocalDate.parse(toBeConverted, format)
+
+        val hour = binding.planTimeHourEdit.text.toString()
+        val minute = binding.planTimeMinuteEdit.text.toString()
+        val time = LocalTime.parse("$hour:$minute")
+
+        val toUpdate = intent.getParcelableExtra<Plan>(EXTRA_PLAN)
+        val id = toUpdate!!.id
+        val plan = Plan(id = id, title = titlePlan, description = descPlan, date = date, time = time)
+
         data.putExtra(INTENT_PLAN, plan)
         setResult(Activity.RESULT_OK, data)
 

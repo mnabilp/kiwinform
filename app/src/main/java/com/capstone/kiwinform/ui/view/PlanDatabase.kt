@@ -1,15 +1,15 @@
 package com.capstone.kiwinform.ui.view
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 
 @Database(
     entities = [Plan::class],
     version = 1,
     exportSchema = false
 )
+@TypeConverters(DateTimeConverter::class)
+
 abstract class PlanDatabase : RoomDatabase() {
     abstract fun planDao(): PlanDao
 
