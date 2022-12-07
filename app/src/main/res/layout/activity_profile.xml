@@ -51,12 +51,13 @@
 
             <TextView
                 android:id="@+id/tv_statistic"
+                style="@style/TextViewTitleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextViewTitleStyle"
+                android:text="@string/statistics"
                 android:textColor="@color/white"
-                android:text="Statistic"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <RelativeLayout
                 android:id="@+id/taskDone_container"
@@ -77,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:text="Task Done"
+                    android:text="@string/finished_tasks"
                     android:textColor="@color/white" />
 
 
@@ -89,18 +90,19 @@
                     android:layout_below="@id/tv_taskDone"
                     android:layout_marginTop="8dp"
                     android:gravity="center_vertical"
-                    android:text="Task Done"
+                    android:text="@string/great_job"
                     android:textColor="@color/white" />
 
                 <TextView
-                    android:id="@+id/tv_taskDone_value"
+                    android:id="@+id/finished_value"
                     style="@style/ButtonTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:gravity="center_vertical"
                     android:text="@string/tv_taskDone_value"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    tools:ignore="RelativeOverlap" />
 
             </RelativeLayout>
 
@@ -123,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:text="Task Done"
+                    android:text="@string/ongoing_tasks"
                     android:textColor="@color/white" />
 
 
@@ -135,18 +137,20 @@
                     android:layout_below="@id/tv_Ongoing"
                     android:layout_marginTop="8dp"
                     android:gravity="center_vertical"
-                    android:text="Task Done"
+                    android:text="@string/dont_give_up"
                     android:textColor="@color/white" />
 
                 <TextView
-                    android:id="@+id/tv_taskOngoing_value"
+                    android:id="@+id/ongoing_value"
                     style="@style/ButtonTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:gravity="center_vertical"
                     android:text="@string/tv_taskOngoin_value"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    tools:ignore="RelativeOverlap" />
+
 
             </RelativeLayout>
 
