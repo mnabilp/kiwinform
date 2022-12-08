@@ -8,11 +8,11 @@
     android:background="@color/colorBrightBlue">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_parent_plan"
+        android:id="@+id/rv_activities_plan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginHorizontal="40dp"
-        tools:listitem="@layout/item_parent_plan"/>
+        tools:listitem="@layout/item_activities_plan"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

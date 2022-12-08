@@ -3,9 +3,10 @@ package com.capstone.kiwinform.ui.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.capstone.kiwinform.databinding.ItemPlanBinding
+import com.capstone.kiwinform.databinding.ItemActivitiesPlanBinding
+import java.time.format.DateTimeFormatter
 
-class ListPlanAdapter : RecyclerView.Adapter<ListPlanAdapter.ListViewHolder>() {
+class ListActivitiesPlanAdapter : RecyclerView.Adapter<ListActivitiesPlanAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
@@ -23,19 +24,23 @@ class ListPlanAdapter : RecyclerView.Adapter<ListPlanAdapter.ListViewHolder>() {
         notifyDataSetChanged()
     }
 
-    class ListViewHolder(var binding: ItemPlanBinding) : RecyclerView.ViewHolder(binding.root)
+    class ListViewHolder(var binding: ItemActivitiesPlanBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val binding = ItemPlanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemActivitiesPlanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val plan = list[position]
         holder.binding.apply {
-            activityTitle.text = plan.title
-            activity.text = plan.description
-            activityTime.text = plan.time.toString()
+            activitiesPlanTitle.text = plan.title
+            activitiesPlan.text = plan.description
+            activitiesPlanTime.text = plan.time.toString()
+
+            val date = plan.date
+            val formattedDate = date.format(DateTimeFormatter.ofPattern("EEEE, d MMM yyyy"))
+            activitiesPlanDate.text = formattedDate
         }
 
         holder.itemView.setOnClickListener{
