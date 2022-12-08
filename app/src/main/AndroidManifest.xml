@@ -14,6 +14,13 @@
         android:theme="@style/Theme.Kiwinform"
         tools:targetApi="31">
         <activity
+            android:name=".ui.view.reminder.ReminderActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.view.register.RegisterActivity"
             android:exported="false"
             android:screenOrientation="sensorPortrait"
@@ -30,11 +37,6 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.view.dashboard.MainActivity"
-            android:exported="false"
-            android:screenOrientation="sensorPortrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".ui.view.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity">
@@ -43,6 +45,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.view.splash.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="sensorPortrait"
+            tools:ignore="LockedOrientationActivity">
+
         </activity>
     </application>
 
