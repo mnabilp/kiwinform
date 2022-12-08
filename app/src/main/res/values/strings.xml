@@ -58,5 +58,6 @@
     <string name="ongoing_tasks">Ongoing Tasks</string>
 
     <string name="time_example">HH:MM:SS</string>
+    <string name="date_example">Day, Day Month Year</string>
 
 </resources>

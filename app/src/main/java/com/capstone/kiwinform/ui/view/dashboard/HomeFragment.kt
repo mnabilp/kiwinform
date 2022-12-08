@@ -17,7 +17,7 @@ import com.capstone.kiwinform.ui.view.reminder.ReminderActivity
 class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding?= null
     private val binding get() = _binding!!
-    private lateinit var viewModel: PlanViewModel
+    private lateinit var planViewModel: PlanViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +36,8 @@ class HomeFragment : Fragment() {
         binding.rvTodaysActivities.layoutManager = LinearLayoutManager(activity)
         binding.rvTodaysActivities.adapter = listPlanAdapter
 
-        viewModel = ViewModelProvider(this).get(PlanViewModel::class.java)
-        viewModel.todaysPlan.observe(viewLifecycleOwner, {
+        planViewModel = ViewModelProvider(this).get(PlanViewModel::class.java)
+        planViewModel.todaysPlan.observe(viewLifecycleOwner, {
             if (it != null) {
                 listPlanAdapter.setList(it)
             }

@@ -8,9 +8,14 @@ import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.capstone.kiwinform.R
 import com.capstone.kiwinform.databinding.ActivityReminderBinding
 import com.capstone.kiwinform.ui.view.Plan
+import com.capstone.kiwinform.ui.view.PlanViewModel
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalTime
@@ -31,21 +36,27 @@ class ReminderActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityReminderBinding
+    private lateinit var planViewModel: PlanViewModel
+
+    private var planId: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityReminderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        planViewModel = ViewModelProvider(this).get(PlanViewModel::class.java)
+
         if (intent.hasExtra(EXTRA_PLAN)) {
             val plan = intent.getParcelableExtra<Plan>(EXTRA_PLAN)
+            planId = plan!!.id
 
             binding.apply {
-                planTitleEditText.setText(plan?.title)
-                planDescEditText.setText(plan?.description)
-                planDateEdit.setText(plan?.date?.format(DateTimeFormatter.ofPattern("EEEE, d MMM yyyy")))
-                planTimeHourEdit.setText(plan?.time.toString().take(2))
-                planTimeMinuteEdit.setText(plan?.time.toString().takeLast(2))
+                planTitleEditText.setText(plan.title)
+                planDescEditText.setText(plan.description)
+                planDateEdit.setText(plan.date.format(DateTimeFormatter.ofPattern("EEEE, d MMM yyyy")))
+                planTimeHourEdit.setText(plan.time.toString().take(2))
+                planTimeMinuteEdit.setText(plan.time.toString().takeLast(2))
             }
         }
 
@@ -141,13 +152,30 @@ class ReminderActivity : AppCompatActivity() {
         val minute = binding.planTimeMinuteEdit.text.toString()
         val time = LocalTime.parse("$hour:$minute")
 
-        val toUpdate = intent.getParcelableExtra<Plan>(EXTRA_PLAN)
-        val id = toUpdate!!.id
-        val plan = Plan(id = id, title = titlePlan, description = descPlan, date = date, time = time)
+        val plan = Plan(id = planId, title = titlePlan, description = descPlan, date = date, time = time)
 
         data.putExtra(INTENT_PLAN, plan)
         setResult(Activity.RESULT_OK, data)
 
         finish()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.reminder_update_menu, menu)
+        if (intent.hasExtra(EXTRA_PLAN)) {
+            val item = menu!!.findItem(R.id.delete)
+            item.isVisible = true
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.delete -> {
+                planViewModel.delete(planId)
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
