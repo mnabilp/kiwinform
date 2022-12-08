@@ -19,15 +19,16 @@
     <string name="subtitle_enter_full_name">Type your name</string>
 
     <!--  Getting Started   -->
-    <string name="title_welcome">WELCOME!</string>
-    <string name="title_onboarding_welcome">Welcome aboard, User!</string>
-    <string name="subtitle_onboarding_welcome">In this app, you will have your own virtual pet. You can have the pet remind you of any activities you might want to do.</string>
+    <string name="title_welcome">WELCOME !</string>
+    <string name="subtitle_onboarding_welcome"><b>Welcome aboard, User!</b>\nIn this app, you will have your own virtual pet.You can have the pet remind you of\nany activities you might want to do.</string>
 
     <string name="title_add_plans">ADD PLANS!</string>
-    <string name="subtitle_onboarding_add_plans">You can add your plans to the app. That way, you can keep a list of all the things you want to do.</string>
+    <string name="subtitle_onboarding_add_plans"><b>You</b> can add your plans to the app.\nThat way, you can keep a list of all the things you want to do.</string>
 
     <string name="title_reminder">REMINDER!</string>
-    <string name="subtitle_onboarding_reminder">Your Pet will remind you of your activities when it’s time to do them. Your Pet will never let you forget !</string>
+    <string name="subtitle_onboarding_reminder"><b>Your Pet</b> will remind you of your activitieswhen it’s time to do them.\nYour Pet will never let you forget !</string>
+
+    <string name="skip_button"><u>SKIP</u></string>
 
     <!--  Miscellaneous  -->
     <string name="title_home">Home</string>
