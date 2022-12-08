@@ -56,8 +56,8 @@
     <string name="finished_tasks">Finished Tasks</string>
     <string name="great_job">Great Job!</string>
     <string name="ongoing_tasks">Ongoing Tasks</string>
-
-    <string name="time_example">HH:MM:SS</string>
-    <string name="date_example">Day, Day Month Year</string>
+        <string name="tv_taskDone_value">50</string>
+    <string name="tv_taskOngoin_value">50</string>
+    <string name="dont_give_up">Don\'t Give up!</string>
 
 </resources>
