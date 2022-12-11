@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "595592749138",
+    "project_id": "kiwinform",
+    "storage_bucket": "kiwinform.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595592749138:android:e01df41027a97774bc3f8b",
+        "android_client_info": {
+          "package_name": "com.capstone.kiwinform"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595592749138-5lib9lf5un47da2pb7br98gtu1r7bcol.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvAz9GKX8jCORfrhQyqBSVLCGRX6VkGqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595592749138-5lib9lf5un47da2pb7br98gtu1r7bcol.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
