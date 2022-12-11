@@ -63,5 +63,6 @@
     <string name="time_example">HH:MM:SS</string>
     <string name="date_example">Day, Day Month Year</string>
     <string name="title_back">Back</string>
+    <string name="your_plans">Your Plans</string>
 
 </resources>
