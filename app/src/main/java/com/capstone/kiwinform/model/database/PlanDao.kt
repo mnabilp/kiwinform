@@ -20,7 +20,7 @@ interface PlanDao {
     @Query("DELETE FROM plan_table WHERE id =:id")
     suspend fun deletePlan(id: Int)
 
-    @Query("SELECT * FROM plan_table ORDER BY id ASC")
+    @Query("SELECT * FROM plan_table ORDER BY date ASC, time ASC")
     fun getListPlan(): LiveData<List<Plan>>
 
     @Query("SELECT * FROM plan_table WHERE date =:dateToday ORDER BY time ASC")

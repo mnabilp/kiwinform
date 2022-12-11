@@ -12,12 +12,13 @@ import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.kiwinform.R
 import com.capstone.kiwinform.databinding.FragmentHomeBinding
-import com.capstone.kiwinform.ui.view.ListPlanAdapter
-import com.capstone.kiwinform.ui.view.Plan
-import com.capstone.kiwinform.ui.view.PlanViewModel
+import com.capstone.kiwinform.adapter.ListPlanAdapter
+import com.capstone.kiwinform.model.Plan
+import com.capstone.kiwinform.ui.view.profile.ProfileActivity
+import com.capstone.kiwinform.ui.viewmodel.PlanViewModel
 import com.capstone.kiwinform.ui.view.reminder.ReminderActivity
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), View.OnClickListener {
     private var _binding : FragmentHomeBinding?= null
     private val binding get() = _binding!!
     private lateinit var planViewModel: PlanViewModel
@@ -50,13 +51,14 @@ class HomeFragment : Fragment() {
         binding.rvTodaysActivities.setHasFixedSize(true)
         binding.rvTodaysActivities.layoutManager = LinearLayoutManager(activity)
         binding.rvTodaysActivities.adapter = listPlanAdapter
+        binding.btnProfile.setOnClickListener(this)
 
         planViewModel = (activity as MainActivity).planViewModel
-        planViewModel.todaysPlan.observe(viewLifecycleOwner, {
+        planViewModel.todaysPlan.observe(viewLifecycleOwner) {
             if (it != null) {
                 listPlanAdapter.setList(it)
             }
-        })
+        }
 
         listPlanAdapter.setOnItemClickCallback(object : ListPlanAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Plan) {
@@ -64,21 +66,31 @@ class HomeFragment : Fragment() {
             }
         })
 
-        planViewModel.isAddedAnim.observe(viewLifecycleOwner, {
+        planViewModel.isAddedAnim.observe(viewLifecycleOwner) {
             if (it == true) {
                 handler.removeCallbacks(runnable)
-                binding.pet.startAnimation(AnimationUtils.loadAnimation(context, R.anim.bouncing_anim))
+                binding.pet.startAnimation(
+                    AnimationUtils.loadAnimation(
+                        context,
+                        R.anim.bouncing_anim
+                    )
+                )
                 handler.postDelayed(runnable, 4500)
             }
-        })
+        }
 
-        planViewModel.isDeletedAnim.observe(viewLifecycleOwner, {
-            if(it == true) {
+        planViewModel.isDeletedAnim.observe(viewLifecycleOwner) {
+            if (it == true) {
                 handler.removeCallbacks(runnable)
-                binding.pet.startAnimation(AnimationUtils.loadAnimation(context, R.anim.is_deleted_anim))
+                binding.pet.startAnimation(
+                    AnimationUtils.loadAnimation(
+                        context,
+                        R.anim.is_deleted_anim
+                    )
+                )
                 handler.postDelayed(runnable, 3500)
             }
-        })
+        }
     }
 
     override fun onDestroyView() {
@@ -90,5 +102,14 @@ class HomeFragment : Fragment() {
         val moveIntent = Intent(context, ReminderActivity::class.java)
         moveIntent.putExtra(ReminderActivity.EXTRA_PLAN, plan)
         activity?.startActivityForResult(moveIntent, ReminderActivity.REQUEST_CODE_ADD)
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.btn_profile -> {
+                val intent = Intent(activity, ProfileActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 }

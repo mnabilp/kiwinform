@@ -27,7 +27,7 @@ class ListPlanAdapter : RecyclerView.Adapter<ListPlanAdapter.ListViewHolder>() {
     class ListViewHolder(var binding: ItemPlanBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val binding =ItemPlanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemPlanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(binding)
     }
 

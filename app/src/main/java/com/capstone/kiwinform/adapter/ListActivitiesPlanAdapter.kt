@@ -1,9 +1,10 @@
-package com.capstone.kiwinform.ui.view
+package com.capstone.kiwinform.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.kiwinform.databinding.ItemActivitiesPlanBinding
+import com.capstone.kiwinform.model.Plan
 import java.time.format.DateTimeFormatter
 
 class ListActivitiesPlanAdapter : RecyclerView.Adapter<ListActivitiesPlanAdapter.ListViewHolder>() {

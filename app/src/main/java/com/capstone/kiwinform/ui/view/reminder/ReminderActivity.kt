@@ -15,8 +15,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.kiwinform.R
 import com.capstone.kiwinform.databinding.ActivityReminderBinding
-import com.capstone.kiwinform.ui.view.Plan
-import com.capstone.kiwinform.ui.view.PlanViewModel
+import com.capstone.kiwinform.model.Plan
+import com.capstone.kiwinform.ui.viewmodel.PlanViewModel
+import com.capstone.kiwinform.utils.AlarmReceiver
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalTime
@@ -31,6 +32,10 @@ class ReminderActivity : AppCompatActivity() {
         const val INTENT_PLAN_ID = "intent_plan_id"
         const val EXTRA_PLAN = "extra_plan"
 
+        private const val DATE_PICKER_TAG = "DatePicker"
+        private const val TIME_PICKER_ONCE_TAG = "TimePickerOnce"
+        private const val TIME_PICKER_REPEAT_TAG = "TimePickerRepeat"
+
         fun launchAddPlanPage(activity: Activity){
             val intent = Intent(activity, ReminderActivity::class.java)
             activity.startActivityForResult(intent, REQUEST_CODE_ADD)
@@ -39,6 +44,7 @@ class ReminderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityReminderBinding
     private lateinit var planViewModel: PlanViewModel
+    private lateinit var alarmReceiver: AlarmReceiver
 
     private var planId: Int = -1
 
@@ -72,10 +78,21 @@ class ReminderActivity : AppCompatActivity() {
         binding.planTimeMinuteEdit.setOnClickListener { updateTime() }
 
         binding.btnSavePlan.setOnClickListener {
+
             if (intent.hasExtra(EXTRA_PLAN)) {
+                val plan = intent.getParcelableExtra<Plan>(EXTRA_PLAN)
+                if (plan != null) {
+                    alarmReceiver.setOneTimeAlarm(this, AlarmReceiver.TYPE_ONE_TIME,
+                        plan.date.toString(),
+                        plan.time.toString(),
+                        plan.title)
+                }
+
                 updatePlan()
             } else { savePlan() }
         }
+
+        alarmReceiver = AlarmReceiver()
     }
 
     private fun updateDate() {

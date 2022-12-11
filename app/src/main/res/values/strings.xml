@@ -64,5 +64,7 @@
     <string name="date_example">Day, Day Month Year</string>
     <string name="title_back">Back</string>
     <string name="your_plans">Your Plans</string>
+    <string name="title_hello">Hello</string>
+    <string name="title_log_out">log out</string>
 
 </resources>
