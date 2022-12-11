@@ -10,12 +10,13 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.kiwinform.R
 import com.capstone.kiwinform.databinding.ActivityReminderBinding
-import com.capstone.kiwinform.model.Plan
-import com.capstone.kiwinform.ui.viewmodel.PlanViewModel
+import com.capstone.kiwinform.ui.view.Plan
+import com.capstone.kiwinform.ui.view.PlanViewModel
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalTime
@@ -25,8 +26,9 @@ import java.util.*
 class ReminderActivity : AppCompatActivity() {
     companion object{
         const val REQUEST_CODE_ADD = 1000
+        const val RESULT_IS_DELETED = Activity.RESULT_FIRST_USER
         const val INTENT_PLAN = "intent_plan"
-
+        const val INTENT_PLAN_ID = "intent_plan_id"
         const val EXTRA_PLAN = "extra_plan"
 
         fun launchAddPlanPage(activity: Activity){
@@ -44,6 +46,8 @@ class ReminderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityReminderBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.createPagePet.startAnimation(AnimationUtils.loadAnimation(this, R.anim.squish_anim))
 
         planViewModel = ViewModelProvider(this).get(PlanViewModel::class.java)
 
@@ -172,7 +176,9 @@ class ReminderActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.delete -> {
-                planViewModel.delete(planId)
+                val data = Intent()
+                data.putExtra(INTENT_PLAN_ID, planId)
+                setResult(RESULT_IS_DELETED, data)
                 finish()
             }
         }

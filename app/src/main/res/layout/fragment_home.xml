@@ -15,6 +15,15 @@
         android:layout_weight="60"
         android:background="@drawable/virtual_pet_bg">
 
+        <ImageView
+            android:id="@+id/pet"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/bear"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

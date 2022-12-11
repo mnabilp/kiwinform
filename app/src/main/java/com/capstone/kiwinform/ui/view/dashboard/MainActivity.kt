@@ -8,14 +8,14 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.kiwinform.R
 import com.capstone.kiwinform.databinding.ActivityMainBinding
-import com.capstone.kiwinform.model.Plan
-import com.capstone.kiwinform.ui.viewmodel.PlanViewModel
+import com.capstone.kiwinform.ui.view.Plan
+import com.capstone.kiwinform.ui.view.PlanViewModel
 import com.capstone.kiwinform.ui.view.reminder.ReminderActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var planViewModel: PlanViewModel
+    lateinit var planViewModel: PlanViewModel
 
     companion object {
         @StringRes
@@ -56,6 +56,14 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == ReminderActivity.REQUEST_CODE_ADD && resultCode == Activity.RESULT_OK) {
             data?.getParcelableExtra<Plan>(ReminderActivity.INTENT_PLAN)?.let { plan ->
                 planViewModel.insertNotes(plan)
+                planViewModel.setIsAddedAnim(true)
+            }
+        }
+
+        else if (requestCode == ReminderActivity.REQUEST_CODE_ADD && resultCode == ReminderActivity.RESULT_IS_DELETED) {
+            data?.getIntExtra(ReminderActivity.INTENT_PLAN_ID, 0)?.let { planId ->
+                planViewModel.delete(planId)
+                planViewModel.setIsDeletedAnim(true)
             }
         }
     }
