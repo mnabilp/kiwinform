@@ -44,7 +44,6 @@ class ReminderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityReminderBinding
     private lateinit var planViewModel: PlanViewModel
-    private lateinit var alarmReceiver: AlarmReceiver
 
     private var planId: Int = -1
 
@@ -80,19 +79,9 @@ class ReminderActivity : AppCompatActivity() {
         binding.btnSavePlan.setOnClickListener {
 
             if (intent.hasExtra(EXTRA_PLAN)) {
-                val plan = intent.getParcelableExtra<Plan>(EXTRA_PLAN)
-                if (plan != null) {
-                    alarmReceiver.setOneTimeAlarm(this, AlarmReceiver.TYPE_ONE_TIME,
-                        plan.date.toString(),
-                        plan.time.toString(),
-                        plan.title)
-                }
-
                 updatePlan()
             } else { savePlan() }
         }
-
-        alarmReceiver = AlarmReceiver()
     }
 
     private fun updateDate() {
