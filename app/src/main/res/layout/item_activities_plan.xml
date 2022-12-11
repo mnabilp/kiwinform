@@ -18,23 +18,23 @@
         <TextView
             android:id="@+id/activities_plan_title"
             style="@style/TextViewTitleStyle"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_activities"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@id/activities_plan"
-            app:layout_constraintEnd_toStartOf="@+id/activities_plan_date"
+            app:layout_constraintTop_toBottomOf="@id/activities_plan_time"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:text="@string/title_activities"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/activities_plan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/activities_plan_title"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="5dp"
             android:text="@string/title_my_plan"
             android:textColor="@color/white"
             style="@style/TextViewSubtitleStyle"/>
@@ -43,8 +43,9 @@
             android:id="@+id/activities_plan_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/activities_plan_title"
             android:text="@string/date_example"
             android:textColor="@color/white"
             style="@style/TextViewTitleStyle"/>
@@ -53,8 +54,10 @@
             android:id="@+id/activities_plan_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/activities_plan"
+            app:layout_constraintTop_toBottomOf="@id/activities_plan_date"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="5dp"
             android:text="@string/time_example"
             android:textColor="@color/white"
             style="@style/TextViewTitleStyle"/>

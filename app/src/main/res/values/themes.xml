@@ -48,7 +48,7 @@
         <item name="boxBackgroundColor">@color/colorLightGray</item>
         <item name="android:textColorHint">@color/colorGray</item>
         <item name="boxStrokeColor">@color/colorLightGray</item>
-        <item name="hintTextColor">@color/black</item>
+        <item name="hintTextColor">@color/colorInvisible</item>
 
         <item name="boxCornerRadiusBottomEnd">10dp</item>
         <item name="boxCornerRadiusBottomStart">10dp</item>
