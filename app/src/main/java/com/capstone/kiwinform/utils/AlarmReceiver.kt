@@ -133,7 +133,7 @@ class AlarmReceiver : BroadcastReceiver() {
             intent,
             PendingIntent.FLAG_IMMUTABLE
         )
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
 
         Toast.makeText(context, "One time alarm set up", Toast.LENGTH_SHORT).show()
     }
