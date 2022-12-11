@@ -1,11 +1,10 @@
-package com.capstone.kiwinform.ui.view
+package com.capstone.kiwinform.utils
 
 import android.os.Build
 import androidx.room.TypeConverter
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 class DateTimeConverter {
     @TypeConverter

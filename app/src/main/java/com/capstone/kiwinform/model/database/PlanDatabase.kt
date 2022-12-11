@@ -1,7 +1,9 @@
-package com.capstone.kiwinform.ui.view
+package com.capstone.kiwinform.model.database
 
 import android.content.Context
 import androidx.room.*
+import com.capstone.kiwinform.model.Plan
+import com.capstone.kiwinform.utils.DateTimeConverter
 
 @Database(
     entities = [Plan::class],

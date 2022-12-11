@@ -1,4 +1,4 @@
-package com.capstone.kiwinform.ui.view
+package com.capstone.kiwinform.model
 
 import android.os.Parcelable
 import androidx.room.Entity

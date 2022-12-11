@@ -7,9 +7,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_app_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kiwinform"
         tools:targetApi="31">
@@ -36,7 +36,7 @@
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".ui.view.dashboard.MainActivity"
+            android:name=".ui.view.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity">
@@ -47,7 +47,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.view.splash.SplashActivity"
+            android:name=".ui.view.dashboard.MainActivity"
             android:exported="true"
             android:screenOrientation="sensorPortrait"
             tools:ignore="LockedOrientationActivity">

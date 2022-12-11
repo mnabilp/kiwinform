@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.kiwinform.R
 import com.capstone.kiwinform.databinding.ActivityReminderBinding
-import com.capstone.kiwinform.ui.view.Plan
-import com.capstone.kiwinform.ui.view.PlanViewModel
+import com.capstone.kiwinform.model.Plan
+import com.capstone.kiwinform.ui.viewmodel.PlanViewModel
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalTime

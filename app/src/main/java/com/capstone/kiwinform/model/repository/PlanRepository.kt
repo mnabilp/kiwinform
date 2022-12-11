@@ -1,6 +1,8 @@
-package com.capstone.kiwinform.ui.view
+package com.capstone.kiwinform.model.repository
 
 import androidx.lifecycle.LiveData
+import com.capstone.kiwinform.model.Plan
+import com.capstone.kiwinform.model.database.PlanDao
 import java.time.LocalDate
 
 class PlanRepository(private val planDao: PlanDao) {

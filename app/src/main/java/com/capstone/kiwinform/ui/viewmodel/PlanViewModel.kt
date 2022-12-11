@@ -1,9 +1,12 @@
-package com.capstone.kiwinform.ui.view
+package com.capstone.kiwinform.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.capstone.kiwinform.model.Plan
+import com.capstone.kiwinform.model.database.PlanDatabase
+import com.capstone.kiwinform.model.repository.PlanRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
