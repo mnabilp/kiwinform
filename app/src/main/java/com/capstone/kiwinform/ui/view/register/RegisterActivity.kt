@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.capstone.kiwinform.R
 import com.capstone.kiwinform.databinding.ActivityRegisterBinding
 import com.capstone.kiwinform.ui.view.login.LoginActivity
+import com.capstone.kiwinform.ui.view.onboarding.OnBoardingActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
@@ -44,7 +45,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                         firebaseAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener {
                                 if (it.isSuccessful) {
-                                    val intent = Intent(this, LoginActivity::class.java)
+                                    val intent = Intent(this, OnBoardingActivity::class.java)
                                     startActivity(intent)
                                 } else {
                                     Toast.makeText(

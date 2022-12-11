@@ -8,13 +8,13 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.kiwinform.R
 import com.capstone.kiwinform.databinding.ActivityMainBinding
-import com.capstone.kiwinform.ui.view.Plan
-import com.capstone.kiwinform.ui.view.PlanViewModel
+import com.capstone.kiwinform.model.Plan
+import com.capstone.kiwinform.ui.viewmodel.PlanViewModel
 import com.capstone.kiwinform.ui.view.reminder.ReminderActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private var binding: ActivityMainBinding? = null
     lateinit var planViewModel: PlanViewModel
 
     companion object {
@@ -33,12 +33,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(binding?.root)
         supportActionBar?.hide()
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
-        binding.viewPager.adapter = sectionsPagerAdapter
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) {tab, position ->
+        binding?.viewPager?.adapter = sectionsPagerAdapter
+        TabLayoutMediator(binding!!.tabLayout, binding!!.viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
             tab.setIcon(TAB_ICONS[position])
             tab.setCustomView(R.layout.tab_layout_custom_view)
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         planViewModel = ViewModelProvider(this).get(PlanViewModel::class.java)
 
-        binding.mainFab.setOnClickListener{
+        binding!!.mainFab.setOnClickListener{
             ReminderActivity.launchAddPlanPage(this@MainActivity)
         }
     }
@@ -66,5 +66,11 @@ class MainActivity : AppCompatActivity() {
                 planViewModel.setIsDeletedAnim(true)
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        binding = null
     }
 }

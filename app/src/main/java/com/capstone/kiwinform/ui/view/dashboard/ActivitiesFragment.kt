@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.kiwinform.databinding.FragmentActivitiesBinding
-import com.capstone.kiwinform.ui.view.ListActivitiesPlanAdapter
-import com.capstone.kiwinform.ui.view.Plan
-import com.capstone.kiwinform.ui.view.PlanViewModel
+import com.capstone.kiwinform.adapter.ListActivitiesPlanAdapter
+import com.capstone.kiwinform.model.Plan
+import com.capstone.kiwinform.ui.viewmodel.PlanViewModel
 import com.capstone.kiwinform.ui.view.reminder.ReminderActivity
 
 class ActivitiesFragment : Fragment() {
