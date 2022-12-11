@@ -11,11 +11,13 @@ import com.capstone.kiwinform.databinding.ActivityMainBinding
 import com.capstone.kiwinform.model.Plan
 import com.capstone.kiwinform.ui.viewmodel.PlanViewModel
 import com.capstone.kiwinform.ui.view.reminder.ReminderActivity
+import com.capstone.kiwinform.utils.AlarmReceiver
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
     lateinit var planViewModel: PlanViewModel
+    private lateinit var alarmReceiver: AlarmReceiver
 
     companion object {
         @StringRes
@@ -35,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         supportActionBar?.hide()
+
+        alarmReceiver = AlarmReceiver()
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
         binding?.viewPager?.adapter = sectionsPagerAdapter
@@ -57,6 +61,11 @@ class MainActivity : AppCompatActivity() {
             data?.getParcelableExtra<Plan>(ReminderActivity.INTENT_PLAN)?.let { plan ->
                 planViewModel.insertNotes(plan)
                 planViewModel.setIsAddedAnim(true)
+
+                alarmReceiver.setOneTimeAlarm(this, AlarmReceiver.TYPE_ONE_TIME,
+                    plan.date.toString(),
+                    plan.time.toString(),
+                    plan.title)
             }
         }
 
